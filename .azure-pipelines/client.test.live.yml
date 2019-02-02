@@ -4,9 +4,9 @@ variables:
   node.version: '10.x'
 
 pool:
+  timeoutInMinutes: 120
   vmImage: '$(os.vmImage)'
 
-timeoutInMinutes: 120
 steps:
   - task: NodeTool@0
     inputs:
