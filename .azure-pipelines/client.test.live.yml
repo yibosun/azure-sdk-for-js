@@ -6,6 +6,7 @@ variables:
 pool:
   vmImage: '$(os.vmImage)'
 
+timeoutInMinutes: 90
 steps:
   - task: NodeTool@0
     inputs:
