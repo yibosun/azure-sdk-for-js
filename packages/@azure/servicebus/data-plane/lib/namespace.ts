@@ -7,7 +7,9 @@ import {
   DeviceTokenCredentials,
   UserTokenCredentials,
   MSITokenCredentials
-} from "ms-rest-azure";
+} from "@azure/ms-rest-nodeauth";
+import { isNode } from "@azure/ms-rest-js";
+
 import { ConnectionContext } from "./connectionContext";
 import { QueueClient } from "./queueClient";
 import { TopicClient } from "./topicClient";
@@ -232,19 +234,23 @@ export class Namespace {
       | MSITokenCredentials,
     options?: NamespaceOptions
   ): Namespace {
-    if (!host || typeof host !== "string") {
-      throw new Error("'host' is a required parameter and must be of type: 'string'.");
-    }
+    if (isNode) {
+      if (!host || typeof host !== "string") {
+        throw new Error("'host' is a required parameter and must be of type: 'string'.");
+      }
 
-    if (typeof credentials !== "object") {
-      throw new Error(
-        "'credentials' is a required parameter and must be an instance of " +
-          "ApplicationTokenCredentials | UserTokenCredentials | DeviceTokenCredentials | " +
-          "MSITokenCredentials."
-      );
+      if (typeof credentials !== "object") {
+        throw new Error(
+          "'credentials' is a required parameter and must be an instance of " +
+            "ApplicationTokenCredentials | UserTokenCredentials | DeviceTokenCredentials | " +
+            "MSITokenCredentials."
+        );
+      }
+      const tokenProvider = new AadTokenProvider(credentials);
+      return Namespace.createFromTokenProvider(host, tokenProvider, options);
+    } else {
+      throw new Error("AadTokenCredentials are not supported in the browser.");
     }
-    const tokenProvider = new AadTokenProvider(credentials);
-    return Namespace.createFromTokenProvider(host, tokenProvider, options);
   }
 
   /**

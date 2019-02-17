@@ -16,6 +16,7 @@ import {
 import { NamespaceOptions } from "./namespace";
 import { Client } from "./client";
 import { OnAmqpEvent, EventContext, ConnectionEvents } from "rhea-promise";
+import { isNode } from "@azure/ms-rest-js";
 
 /**
  * @internal
@@ -39,9 +40,11 @@ export namespace ConnectionContext {
    * @property {string} userAgent The user agent string for the ServiceBus client.
    * azure-sdk-for-js/azure-<package-name>/<package-version> (NODE-VERSION <node-version>; <os-type> <os-version>)
    */
-  export const userAgent: string = `azure-sdk-for-js/azure-service-bus/${
-    packageJsonInfo.version
-  } (NODE-VERSION ${process.version}; ${os.type()} ${os.release()})`;
+  export const userAgent: string = isNode
+    ? `azure-sdk-for-js/azure-service-bus/${packageJsonInfo.version} (NODE-VERSION ${
+        process.version
+      }; ${os.type()} ${os.release()})`
+    : navigator.userAgent;
 
   export function create(
     config: ConnectionConfig,
@@ -56,10 +59,11 @@ export namespace ConnectionContext {
       isEntityPathRequired: false,
       connectionProperties: {
         product: "MSJSClient",
-        userAgent: userAgent,
-        version: packageJsonInfo.version
+        version: packageJsonInfo.version,
+        userAgent
       }
     };
+
     // Let us create the base context and then add ServiceBus specific ConnectionContext properties.
     const connectionContext = ConnectionContextBase.create(parameters) as ConnectionContext;
     connectionContext.clients = {};

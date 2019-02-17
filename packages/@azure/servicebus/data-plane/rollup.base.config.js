@@ -8,6 +8,8 @@ import json from "rollup-plugin-json";
 import replace from "rollup-plugin-replace";
 import { uglify } from "rollup-plugin-uglify";
 import sourcemaps from "rollup-plugin-sourcemaps";
+import builtins from "rollup-plugin-node-builtins";
+import globals from "rollup-plugin-node-globals";
 
 import path from "path";
 
@@ -20,7 +22,7 @@ export function nodeConfig(test = false) {
   const externalNodeBuiltins = ["events", "util", "os"];
   const baseConfig = {
     input: input,
-    external: depNames.concat(externalNodeBuiltins),
+    external: [...depNames, ...externalNodeBuiltins],
     output: { file: "dist/index.js", format: "cjs", sourcemap: true },
     plugins: [
       sourcemaps(),
@@ -32,7 +34,9 @@ export function nodeConfig(test = false) {
           "if (isNode)": "if (true)"
         }
       }),
-      nodeResolve({ preferBuiltins: true }),
+      nodeResolve({
+        preferBuiltins: true
+      }),
       cjs(),
       json()
     ]
@@ -77,35 +81,25 @@ export function nodeConfig(test = false) {
 export function browserConfig(test = false) {
   const baseConfig = {
     input: input,
-    external: ["ms-rest-js"],
-    output: {
-      file: "browser/index.js",
-      format: "umd",
-      name: "ExampleClient",
-      sourcemap: true,
-      globals: { "ms-rest-js": "msRest" }
-    },
+    output: { file: "browser/index.js", format: "umd", name: "Azure.ServiceBus", sourcemap: true },
     plugins: [
       sourcemaps(),
-      replace(
-        // ms-rest-js is externalized so users must include it prior to using this bundle.
-        {
-          delimiters: ["", ""],
-          values: {
-            // replace dynamic checks with if (false) since this is for
-            // browser only. Rollup's dead code elimination will remove
-            // any code guarded by if (isNode) { ... }
-            "if (isNode)": "if (false)"
-          }
+      replace({
+        delimiters: ["", ""],
+        values: {
+          // replace dynamic checks with if (false) since this is for
+          // browser only. Rollup's dead code elimination will remove
+          // any code guarded by if (isNode) { ... }
+          "if (isNode)": "if (false)"
         }
-      ),
+      }),
       nodeResolve({
         preferBuiltins: false,
         browser: true
       }),
-      cjs({
-        namedExports: { events: ["EventEmitter"] }
-      }),
+      cjs(),
+      builtins(),
+      globals(),
       json()
     ]
   };
