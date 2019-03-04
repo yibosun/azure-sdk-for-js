@@ -36,6 +36,7 @@ export class Receiver {
   private _isClosed: boolean = false;
 
   /**
+   * @ignore
    * @property {boolean} [isClosed] Denotes if close() was called on this receiver.
    * @readonly
    */
@@ -219,6 +220,7 @@ export class Receiver {
   }
 
   /**
+   * @ignore
    * Indicates whether the receiver is currently receiving messages or not.
    * When this return true, a new receive() or receiveBatch() call cannot be made.
    */
@@ -289,6 +291,7 @@ export class SessionReceiver {
   private _messageSession: MessageSession;
 
   /**
+   * @ignore
    * @property {boolean} [isClosed] Denotes if close() was called on this receiver.
    * @readonly
    */
@@ -507,6 +510,7 @@ export class SessionReceiver {
   }
 
   /**
+   * @ignore
    * Indicates whether the receiver is currently receiving messages or not.
    * When this return true, a new receive() or receiveBatch() call cannot be made on the receiver.
    */

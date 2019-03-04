@@ -18,7 +18,7 @@ export class TopicClient implements Client {
   /**
    * @property {string} The entitypath for the Service Bus Topic for which this client is created.
    */
-  readonly entityPath: string;
+  readonly name: string;
   /**
    * @property {string} A unique identifier for the client.
    */
@@ -46,9 +46,9 @@ export class TopicClient implements Client {
    */
   constructor(name: string, context: ConnectionContext) {
     throwErrorIfConnectionClosed(context);
-    this.entityPath = name;
-    this.id = `${this.entityPath}/${generate_uuid()}`;
-    this._context = ClientEntityContext.create(this.entityPath, context);
+    this.name = name;
+    this.id = `${this.name}/${generate_uuid()}`;
+    this._context = ClientEntityContext.create(this.name, context);
   }
 
   /**

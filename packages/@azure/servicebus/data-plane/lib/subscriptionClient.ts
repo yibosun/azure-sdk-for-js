@@ -36,7 +36,7 @@ export class SubscriptionClient implements Client {
   /**
    * @property {string} The entitypath for the Service Bus Subscription for which this client is created.
    */
-  readonly entityPath: string;
+  readonly name: string;
   /**
    * @property {string} A unique identifier for the client.
    */
@@ -66,9 +66,9 @@ export class SubscriptionClient implements Client {
   constructor(topicName: string, subscriptionName: string, context: ConnectionContext) {
     throwErrorIfConnectionClosed(context);
 
-    this.entityPath = `${topicName}/Subscriptions/${subscriptionName}`;
-    this.id = `${this.entityPath}/${generate_uuid()}`;
-    this._context = ClientEntityContext.create(this.entityPath, context);
+    this.name = `${topicName}/Subscriptions/${subscriptionName}`;
+    this.id = `${this.name}/${generate_uuid()}`;
+    this._context = ClientEntityContext.create(this.name, context);
 
     this.topicName = topicName;
     this.subscriptionName = subscriptionName;

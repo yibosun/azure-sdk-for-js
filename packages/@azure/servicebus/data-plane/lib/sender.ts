@@ -24,6 +24,7 @@ export class Sender {
   private _isClosed: boolean = false;
 
   /**
+   * @ignore
    * @property {boolean} [isClosed] Denotes if close() was called on this sender.
    * @readonly
    */

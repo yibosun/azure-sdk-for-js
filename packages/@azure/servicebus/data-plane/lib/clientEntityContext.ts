@@ -217,7 +217,7 @@ export namespace ClientEntityContext {
       }
       let isManagementClientInUse = false;
       for (const id of Object.keys(context.clients)) {
-        if (context.clients[id].entityPath === entityContext.entityPath) {
+        if (context.clients[id].name === entityContext.entityPath) {
           isManagementClientInUse = true;
           break;
         }
@@ -249,7 +249,7 @@ function getManagementClient(
 ): ManagementClient | undefined {
   let result: ManagementClient | undefined;
   for (const id of Object.keys(clients)) {
-    if (clients[id].entityPath === entityPath) {
+    if (clients[id].name === entityPath) {
       result = (clients[id] as any)._context.managementClient;
       break;
     }

@@ -60,12 +60,12 @@ async function beforeEachTest(
   receiverClient = clients.receiverClient;
 
   if (receiverClient instanceof QueueClient) {
-    deadLetterClient = ns.createQueueClient(Namespace.getDeadLetterQueuePath(receiverClient.entityPath));
+    deadLetterClient = ns.createQueueClient(Namespace.getDeadLetterQueuePath(receiverClient.name));
   }
 
   if (receiverClient instanceof SubscriptionClient) {
     deadLetterClient = ns.createSubscriptionClient(
-      Namespace.getDeadLetterTopicPath(senderClient.entityPath, receiverClient.subscriptionName),
+      Namespace.getDeadLetterTopicPath(senderClient.name, receiverClient.subscriptionName),
       receiverClient.subscriptionName
     );
   }

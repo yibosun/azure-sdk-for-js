@@ -10,7 +10,7 @@ export interface Client {
   /**
    * @property {string} The entitypath for the Service Bus entity for which this client is created.
    */
-  readonly entityPath: string;
+  readonly name: string;
   /**
    * @property {string} A unique identifier for the client.
    */
