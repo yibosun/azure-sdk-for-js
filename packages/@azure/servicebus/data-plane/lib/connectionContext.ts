@@ -44,7 +44,7 @@ export namespace ConnectionContext {
     ? `azure-sdk-for-js/azure-service-bus/${packageJsonInfo.version} (NODE-VERSION ${
         process.version
       }; ${os.type()} ${os.release()})`
-    : navigator.userAgent;
+    : `azure-sdk-for-js/azure-service-bus/${packageJsonInfo.version} (${navigator.userAgent})`;
 
   export function create(
     config: ConnectionConfig,
