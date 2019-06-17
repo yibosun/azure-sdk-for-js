@@ -110,6 +110,7 @@ export abstract class StorageURL {
     this.pipeline = pipeline;
     this.storageClientContext = new StorageClientContext(
       this.url,
+      "",
       pipeline.toServiceClientOptions()
     );
 

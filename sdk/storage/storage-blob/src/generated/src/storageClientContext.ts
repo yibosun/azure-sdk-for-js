@@ -7,10 +7,9 @@
  * Changes may cause incorrect behavior and will be lost if the code is
  * regenerated.
  */
+
 import * as msRest from "@azure/ms-rest-js";
-
 import * as Models from "./models";
-
 
 const packageName = "azure-storage-blob";
 const packageVersion = "1.0.0";

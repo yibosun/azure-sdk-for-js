@@ -2,8 +2,7 @@ import { BlobSASPermissions } from "./BlobSASPermissions";
 import { ContainerSASPermissions } from "./ContainerSASPermissions";
 import { SharedKeyCredential } from "./credentials/SharedKeyCredential";
 import { IIPRange, ipRangeToString } from "./IIPRange";
-import { SASProtocol } from "./SASQueryParameters";
-import { SASQueryParameters } from "./SASQueryParameters";
+import { SASProtocol, SASQueryParameters } from "./SASQueryParameters";
 import { SERVICE_VERSION } from "./utils/constants";
 import { truncatedISO8061Date } from "./utils/utils.common";
 
@@ -198,6 +197,8 @@ export function generateBlobSASQueryParameters(
     blobSASSignatureValues.ipRange ? ipRangeToString(blobSASSignatureValues.ipRange) : "",
     blobSASSignatureValues.protocol ? blobSASSignatureValues.protocol : "",
     version,
+    resource,
+    "", // TODO: This is a placeholder for signed snapshottime in SAS after 2018-11-09
     blobSASSignatureValues.cacheControl ? blobSASSignatureValues.cacheControl : "",
     blobSASSignatureValues.contentDisposition ? blobSASSignatureValues.contentDisposition : "",
     blobSASSignatureValues.contentEncoding ? blobSASSignatureValues.contentEncoding : "",

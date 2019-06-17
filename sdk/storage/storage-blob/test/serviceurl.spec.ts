@@ -1,10 +1,11 @@
 import * as assert from "assert";
+import * as dotenv from "dotenv";
 
 import { Aborter } from "../src/Aborter";
 import { ContainerURL } from "../src/ContainerURL";
 import { ServiceURL } from "../src/ServiceURL";
 import { getAlternateBSU, getBSU, getUniqueName, wait } from "./utils";
-import * as dotenv from "dotenv";
+
 dotenv.config({ path: "../.env" });
 
 describe("ServiceURL", () => {

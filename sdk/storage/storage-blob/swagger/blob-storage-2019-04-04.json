@@ -1,44 +1,44 @@
 {
-  "swagger": "2.0",
-  "info": {
-    "title": "Azure Blob Storage",
-    "version": "2019-04-04",
-    "x-ms-code-generation-settings": {
-      "header": "MIT",
-      "strictSpecAdherence": false
-    }
-  },
-  "x-ms-parameterized-host": {
-    "hostTemplate": "{url}",
-    "useSchemePrefix": false,
-    "positionInOperation": "first",
-    "parameters": [
-      {
-        "$ref": "#/parameters/Url"
-      }
-    ]
-  },
-  "securityDefinitions": {
-    "blob_shared_key": {
-      "type": "apiKey",
-      "name": "Authorization",
-      "in": "header"
-    }
-  },
-  "schemes": [
-    "https"
-  ],
-  "consumes": [
-    "application/xml",
-    "application/octet-stream",
-    "text/plain"
-  ],
-  "produces": [
-    "application/xml",
-    "application/octet-stream",
-    "text/plain"
-  ],
-  "paths": {},
+    "swagger": "2.0",
+    "info": {
+        "title": "Azure Blob Storage",
+        "version": "2019-04-04",
+        "x-ms-code-generation-settings": {
+            "header": "MIT",
+            "strictSpecAdherence": false
+        }
+    },
+    "x-ms-parameterized-host": {
+        "hostTemplate": "{url}",
+        "useSchemePrefix": false,
+        "positionInOperation": "first",
+        "parameters": [
+            {
+                "$ref": "#/parameters/Url"
+            }
+        ]
+    },
+    "securityDefinitions": {
+        "blob_shared_key": {
+            "type": "apiKey",
+            "name": "Authorization",
+            "in": "header"
+        }
+    },
+    "schemes": [
+        "https"
+    ],
+    "consumes": [
+        "application/xml",
+        "application/octet-stream",
+        "text/plain"
+    ],
+    "produces": [
+        "application/xml",
+        "application/octet-stream",
+        "text/plain"
+    ],
+    "paths": {},
     "x-ms-paths": {
         "/?restype=service&comp=properties": {
             "put": {
@@ -5084,9 +5084,9 @@
                     },
                     {
                         "$ref": "#/parameters/AccessTierOptional"
-          },
-          {
-            "$ref": "#/parameters/RehydratePriority"
+                    },
+                    {
+                        "$ref": "#/parameters/RehydratePriority"
                     },
                     {
                         "$ref": "#/parameters/SourceIfModifiedSince"
@@ -5443,9 +5443,9 @@
                     },
                     {
                         "$ref": "#/parameters/AccessTierRequired"
-          },
-          {
-            "$ref": "#/parameters/RehydratePriority"
+                    },
+                    {
+                        "$ref": "#/parameters/RehydratePriority"
                     },
                     {
                         "$ref": "#/parameters/ApiVersionParameter"
@@ -7675,1261 +7675,1261 @@
                 }
             ]
         }
-     },
-  "definitions": {
-    "KeyInfo": {
-      "type": "object",
-      "required": [
-        "Start",
-        "Expiry"
-      ],
-      "description": "Key information",
-      "properties": {
-        "Start": {
-          "description": "The date-time the key is active in ISO 8601 UTC time",
-          "type": "string"
-        },
-        "Expiry": {
-          "description": "The date-time the key expires in ISO 8601 UTC time",
-          "type": "string"
-        }
-      }
     },
-    "UserDelegationKey": {
-      "type": "object",
-      "required": [
-        "SignedOid",
-        "SignedTid",
-        "SignedStart",
-        "SignedExpiry",
-        "SignedService",
-        "SignedVersion",
-        "Value"
-      ],
-      "description": "A user delegation key",
-      "properties": {
-        "SignedOid": {
-          "description": "The Azure Active Directory object ID in GUID format.",
-          "type": "string"
-        },
-        "SignedTid": {
-          "description": "The Azure Active Directory tenant ID in GUID format",
-          "type": "string"
-        },
-        "SignedStart": {
-          "description": "The date-time the key is active",
-          "type": "string",
-          "format": "date-time"
-        },
-        "SignedExpiry": {
-          "description": "The date-time the key expires",
-          "type": "string",
-          "format": "date-time"
-        },
-        "SignedService": {
-          "description": "Abbreviation of the Azure Storage service that accepts the key",
-          "type": "string"
-        },
-        "SignedVersion": {
-          "description": "The service version that created the key",
-          "type": "string"
-        },
-        "Value": {
-          "description": "The key as a base64 string",
-          "type": "string"
-        }
-      }
-    },
-    "PublicAccessType": {
-      "type": "string",
-      "enum": [
-        "container",
-        "blob"
-      ],
-      "x-ms-enum": {
-        "name": "PublicAccessType",
-        "modelAsString": true
-      }
-    },
-    "CopyStatus": {
-      "type": "string",
-      "enum": [
-        "pending",
-        "success",
-        "aborted",
-        "failed"
-      ],
-      "x-ms-enum": {
-        "name": "CopyStatusType",
-        "modelAsString": false
-      }
-    },
-    "LeaseDuration": {
-      "type": "string",
-      "enum": [
-        "infinite",
-        "fixed"
-      ],
-      "x-ms-enum": {
-        "name": "LeaseDurationType",
-        "modelAsString": false
-      }
-    },
-    "LeaseState": {
-      "type": "string",
-      "enum": [
-        "available",
-        "leased",
-        "expired",
-        "breaking",
-        "broken"
-      ],
-      "x-ms-enum": {
-        "name": "LeaseStateType",
-        "modelAsString": false
-      }
-    },
-    "LeaseStatus": {
-      "type": "string",
-      "enum": [
-        "locked",
-        "unlocked"
-      ],
-      "x-ms-enum": {
-        "name": "LeaseStatusType",
-        "modelAsString": false
-      }
-    },
-    "StorageError": {
-      "type": "object",
-      "properties": {
-        "Message": {
-          "type": "string"
-        }
-      }
-    },
-    "DataLakeStorageError": {
-      "type": "object",
-      "properties": {
-        "error": {
-          "description": "The service error response object.",
-          "properties": {
-            "code": {
-              "description": "The service error code.",
-              "type": "string"
-            },
-            "message": {
-              "description": "The service error message.",
-              "type": "string"
+    "definitions": {
+        "KeyInfo": {
+            "type": "object",
+            "required": [
+                "Start",
+                "Expiry"
+            ],
+            "description": "Key information",
+            "properties": {
+                "Start": {
+                    "description": "The date-time the key is active in ISO 8601 UTC time",
+                    "type": "string"
+                },
+                "Expiry": {
+                    "description": "The date-time the key expires in ISO 8601 UTC time",
+                    "type": "string"
+                }
             }
-          }
-        }
-      }
-    },
-    "AccessPolicy": {
-      "type": "object",
-      "required": [
-        "Start",
-        "Expiry",
-        "Permission"
-      ],
-      "description": "An Access policy",
-      "properties": {
-        "Start": {
-          "description": "the date-time the policy is active",
-          "type": "string",
-          "format": "date-time"
         },
-        "Expiry": {
-          "description": "the date-time the policy expires",
-          "type": "string",
-          "format": "date-time"
+        "UserDelegationKey": {
+            "type": "object",
+            "required": [
+                "SignedOid",
+                "SignedTid",
+                "SignedStart",
+                "SignedExpiry",
+                "SignedService",
+                "SignedVersion",
+                "Value"
+            ],
+            "description": "A user delegation key",
+            "properties": {
+                "SignedOid": {
+                    "description": "The Azure Active Directory object ID in GUID format.",
+                    "type": "string"
+                },
+                "SignedTid": {
+                    "description": "The Azure Active Directory tenant ID in GUID format",
+                    "type": "string"
+                },
+                "SignedStart": {
+                    "description": "The date-time the key is active",
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "SignedExpiry": {
+                    "description": "The date-time the key expires",
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "SignedService": {
+                    "description": "Abbreviation of the Azure Storage service that accepts the key",
+                    "type": "string"
+                },
+                "SignedVersion": {
+                    "description": "The service version that created the key",
+                    "type": "string"
+                },
+                "Value": {
+                    "description": "The key as a base64 string",
+                    "type": "string"
+                }
+            }
         },
-        "Permission": {
-          "description": "the permissions for the acl policy",
-          "type": "string"
-        }
-      }
-    },
-    "AccessTier": {
-      "type": "string",
-      "enum": [
-        "P4",
-        "P6",
-        "P10",
-        "P20",
-        "P30",
-        "P40",
-        "P50",
-        "Hot",
-        "Cool",
-        "Archive"
-      ],
-      "x-ms-enum": {
-        "name": "AccessTier",
-        "modelAsString": true
-      }
-    },
-    "ArchiveStatus": {
-      "type": "string",
-      "enum": [
-        "rehydrate-pending-to-hot",
-        "rehydrate-pending-to-cool"
-      ],
-      "x-ms-enum": {
-        "name": "ArchiveStatus",
-        "modelAsString": true
-      }
-    },
-    "BlobItem": {
-      "xml": {
-        "name": "Blob"
-      },
-      "description": "An Azure Storage blob",
-      "type": "object",
-      "required": [
-        "Name",
-        "Deleted",
-        "Snapshot",
-        "VersionId",
-        "Properties"
-      ],
-      "properties": {
-        "Name": {
-          "type": "string"
-        },
-        "Deleted": {
-          "type": "boolean"
-        },
-        "Snapshot": {
-          "type": "string"
-        },
-        "VersionId": {
-          "type": "string"
-        },
-        "Properties": {
-          "$ref": "#/definitions/BlobProperties"
-        },
-        "Metadata": {
-          "$ref": "#/definitions/BlobMetadata"
-        },
-        "Tags": {
-          "$ref": "#/definitions/BlobTags"
-        }
-      }
-    },
-    "BlobProperties": {
-      "xml": {
-        "name": "Properties"
-      },
-      "description": "Properties of a blob",
-      "type": "object",
-      "required": [
-        "Etag",
-        "Last-Modified",
-        "TagCount"
-      ],
-      "properties": {
-        "Creation-Time": {
-          "type": "string",
-          "format": "date-time-rfc1123"
-        },
-        "Last-Modified": {
-          "type": "string",
-          "format": "date-time-rfc1123"
-        },
-        "Etag": {
-          "type": "string",
-          "format": "etag"
-        },
-        "Content-Length": {
-          "type": "integer",
-          "format": "int64",
-          "description": "Size in bytes"
-        },
-        "Content-Type": {
-          "type": "string"
-        },
-        "Content-Encoding": {
-          "type": "string"
-        },
-        "Content-Language": {
-          "type": "string"
-        },
-        "Content-MD5": {
-          "type": "string",
-          "format": "byte"
-        },
-        "Content-Disposition": {
-          "type": "string"
-        },
-        "Cache-Control": {
-          "type": "string"
-        },
-        "x-ms-blob-sequence-number": {
-          "x-ms-client-name": "blobSequenceNumber",
-          "type": "integer",
-          "format": "int64"
-        },
-        "BlobType": {
-          "type": "string",
-          "enum": [
-            "BlockBlob",
-            "PageBlob",
-            "AppendBlob"
-          ],
-          "x-ms-enum": {
-            "name": "BlobType",
-            "modelAsString": false
-          }
-        },
-        "LeaseStatus": {
-          "$ref": "#/definitions/LeaseStatus"
-        },
-        "LeaseState": {
-          "$ref": "#/definitions/LeaseState"
-        },
-        "LeaseDuration": {
-          "$ref": "#/definitions/LeaseDuration"
-        },
-        "CopyId": {
-          "type": "string"
+        "PublicAccessType": {
+            "type": "string",
+            "enum": [
+                "container",
+                "blob"
+            ],
+            "x-ms-enum": {
+                "name": "PublicAccessType",
+                "modelAsString": true
+            }
         },
         "CopyStatus": {
-          "$ref": "#/definitions/CopyStatus"
-        },
-        "CopySource": {
-          "type": "string"
-        },
-        "CopyProgress": {
-          "type": "string"
-        },
-        "CopyCompletionTime": {
-          "type": "string",
-          "format": "date-time-rfc1123"
-        },
-        "CopyStatusDescription": {
-          "type": "string"
-        },
-        "ServerEncrypted": {
-          "type": "boolean"
-        },
-        "IncrementalCopy": {
-          "type": "boolean"
-        },
-        "DestinationSnapshot": {
-          "type": "string"
-        },
-        "DeletedTime": {
-          "type": "string",
-          "format": "date-time-rfc1123"
-        },
-        "RemainingRetentionDays": {
-          "type": "integer"
-        },
-        "AccessTier": {
-          "$ref": "#/definitions/AccessTier"
-        },
-        "AccessTierInferred": {
-          "type": "boolean"
-        },
-        "ArchiveStatus": {
-          "$ref": "#/definitions/ArchiveStatus"
-        },
-        "CustomerProvidedKeySha256": {
-          "type": "string"
-        },
-        "CustomerProvidedKeyName": {
-          "type": "string"
-        },
-        "AccessTierChangeTime": {
-          "type": "string",
-          "format": "date-time-rfc1123"
-        },
-        "TagCount": {
-          "type": "integer",
-          "description": "The number of tags corresponding to the blob."
-        }
-      }
-    },
-    "ListBlobsFlatSegmentResponse": {
-      "xml": {
-        "name": "EnumerationResults"
-      },
-      "description": "An enumeration of blobs",
-      "type": "object",
-      "required": [
-        "ServiceEndpoint",
-        "ContainerName",
-        "Segment"
-      ],
-      "properties": {
-        "ServiceEndpoint": {
-          "type": "string",
-          "xml": {
-            "attribute": true
-          }
-        },
-        "ContainerName": {
-          "type": "string",
-          "xml": {
-            "attribute": true
-          }
-        },
-        "Prefix": {
-          "type": "string"
-        },
-        "Marker": {
-          "type": "string"
-        },
-        "MaxResults": {
-          "type": "integer"
-        },
-        "Delimiter": {
-          "type": "string"
-        },
-        "Segment": {
-          "$ref": "#/definitions/BlobFlatListSegment"
-        },
-        "NextMarker": {
-          "type": "string"
-        }
-      }
-    },
-    "ListBlobsHierarchySegmentResponse": {
-      "xml": {
-        "name": "EnumerationResults"
-      },
-      "description": "An enumeration of blobs",
-      "type": "object",
-      "required": [
-        "ServiceEndpoint",
-        "ContainerName",
-        "Prefix",
-        "Marker",
-        "MaxResults",
-        "Delimiter",
-        "Segment",
-        "NextMarker"
-      ],
-      "properties": {
-        "ServiceEndpoint": {
-          "type": "string",
-          "xml": {
-            "attribute": true
-          }
-        },
-        "ContainerName": {
-          "type": "string",
-          "xml": {
-            "attribute": true
-          }
-        },
-        "Prefix": {
-          "type": "string"
-        },
-        "Marker": {
-          "type": "string"
-        },
-        "MaxResults": {
-          "type": "integer"
-        },
-        "Delimiter": {
-          "type": "string"
-        },
-        "Segment": {
-          "$ref": "#/definitions/BlobHierarchyListSegment"
-        },
-        "NextMarker": {
-          "type": "string"
-        }
-      }
-    },
-    "BlobFlatListSegment": {
-      "xml": {
-        "name": "Blobs"
-      },
-      "required": [
-        "BlobItems"
-      ],
-      "type": "object",
-      "properties": {
-        "BlobItems": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/BlobItem"
-          }
-        }
-      }
-    },
-    "BlobHierarchyListSegment": {
-      "xml": {
-        "name": "Blobs"
-      },
-      "type": "object",
-      "required": [
-        "BlobItems"
-      ],
-      "properties": {
-        "BlobPrefixes": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/BlobPrefix"
-          }
-        },
-        "BlobItems": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/BlobItem"
-          }
-        }
-      }
-    },
-    "BlobPrefix": {
-      "type": "object",
-      "required": [
-        "Name"
-      ],
-      "properties": {
-        "Name": {
-          "type": "string"
-        }
-      }
-    },
-    "Tag": {
-      "type": "object",
-      "required": [
-        "Key",
-        "Value"
-      ],
-      "description": "Represents a single user-provided tag.",
-      "properties": {
-        "Key": {
-          "description": "The tag name.",
-          "type": "string"
-        },
-        "Value": {
-          "description": "The tag value.",
-          "type": "string"
-        }
-      }
-    },
-    "BlobTags": {
-      "xml": {
-        "name": "Tags"
-      },
-      "description": "XML containing key/value pairs representing the tags for the blob.",
-      "properties": {
-        "TagSet": {
-          "xml": {
-            "wrapped": true
-          },
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/Tag"
-          }
-        }
-      }
-    },
-    "Block": {
-      "type": "object",
-      "required": [
-        "Name",
-        "Size"
-      ],
-      "description": "Represents a single block in a block blob.  It describes the block's ID and size.",
-      "properties": {
-        "Name": {
-          "description": "The base64 encoded block ID.",
-          "type": "string"
-        },
-        "Size": {
-          "description": "The block size in bytes.",
-          "type": "integer"
-        }
-      }
-    },
-    "BlockList": {
-      "type": "object",
-      "properties": {
-        "CommittedBlocks": {
-          "xml": {
-            "wrapped": true
-          },
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/Block"
-          }
-        },
-        "UncommittedBlocks": {
-          "xml": {
-            "wrapped": true
-          },
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/Block"
-          }
-        }
-      }
-    },
-    "BlockLookupList": {
-      "type": "object",
-      "properties": {
-        "Committed": {
-          "type": "array",
-          "items": {
             "type": "string",
-            "xml": {
-              "name": "Committed"
+            "enum": [
+                "pending",
+                "success",
+                "aborted",
+                "failed"
+            ],
+            "x-ms-enum": {
+                "name": "CopyStatusType",
+                "modelAsString": false
             }
-          }
-        },
-        "Uncommitted": {
-          "type": "array",
-          "items": {
-            "type": "string",
-            "xml": {
-              "name": "Uncommitted"
-            }
-          }
-        },
-        "Latest": {
-          "type": "array",
-          "items": {
-            "type": "string",
-            "xml": {
-              "name": "Latest"
-            }
-          }
-        }
-      },
-      "xml": {
-        "name": "BlockList"
-      }
-    },
-    "ContainerItem": {
-      "xml": {
-        "name": "Container"
-      },
-      "type": "object",
-      "required": [
-        "Name",
-        "Properties"
-      ],
-      "description": "An Azure Storage container",
-      "properties": {
-        "Name": {
-          "type": "string"
-        },
-        "Deleted": {
-          "type": "boolean"
-        },
-        "Version": {
-          "type": "string"
-        },
-        "Properties": {
-          "$ref": "#/definitions/ContainerProperties"
-        },
-        "Metadata": {
-          "$ref": "#/definitions/ContainerMetadata"
-        }
-      }
-    },
-    "ContainerProperties": {
-      "type": "object",
-      "required": [
-        "Last-Modified",
-        "Etag"
-      ],
-      "description": "Properties of a container",
-      "properties": {
-        "Last-Modified": {
-          "type": "string",
-          "format": "date-time-rfc1123"
-        },
-        "Etag": {
-          "type": "string",
-          "format": "etag"
-        },
-        "LeaseStatus": {
-          "$ref": "#/definitions/LeaseStatus"
-        },
-        "LeaseState": {
-          "$ref": "#/definitions/LeaseState"
         },
         "LeaseDuration": {
-          "$ref": "#/definitions/LeaseDuration"
+            "type": "string",
+            "enum": [
+                "infinite",
+                "fixed"
+            ],
+            "x-ms-enum": {
+                "name": "LeaseDurationType",
+                "modelAsString": false
+            }
         },
-        "PublicAccess": {
-          "$ref": "#/definitions/PublicAccessType"
+        "LeaseState": {
+            "type": "string",
+            "enum": [
+                "available",
+                "leased",
+                "expired",
+                "breaking",
+                "broken"
+            ],
+            "x-ms-enum": {
+                "name": "LeaseStateType",
+                "modelAsString": false
+            }
         },
-        "HasImmutabilityPolicy": {
-          "type": "boolean"
+        "LeaseStatus": {
+            "type": "string",
+            "enum": [
+                "locked",
+                "unlocked"
+            ],
+            "x-ms-enum": {
+                "name": "LeaseStatusType",
+                "modelAsString": false
+            }
         },
-        "HasLegalHold": {
-          "type": "boolean"
+        "StorageError": {
+            "type": "object",
+            "properties": {
+                "Message": {
+                    "type": "string"
+                }
+            }
         },
-        "DeletedTime": {
-          "type": "string",
-          "format": "date-time-rfc1123"
-        },
-        "RemainingRetentionDays": {
-          "type": "integer"
-        }
-      }
-    },
-    "ListContainersSegmentResponse": {
-      "xml": {
-        "name": "EnumerationResults"
-      },
-      "description": "An enumeration of containers",
-      "type": "object",
-      "required": [
-        "ServiceEndpoint",
-        "ContainerItems"
-      ],
-      "properties": {
-        "ServiceEndpoint": {
-          "type": "string",
-          "xml": {
-            "attribute": true
-          }
-        },
-        "Prefix": {
-          "type": "string"
-        },
-        "Marker": {
-          "type": "string"
-        },
-        "MaxResults": {
-          "type": "integer"
-        },
-        "ContainerItems": {
-          "xml": {
-            "wrapped": true,
-            "name": "Containers"
-          },
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/ContainerItem"
-          }
-        },
-        "NextMarker": {
-          "type": "string"
-        }
-      }
-    },
-    "CorsRule": {
-      "description": "CORS is an HTTP feature that enables a web application running under one domain to access resources in another domain. Web browsers implement a security restriction known as same-origin policy that prevents a web page from calling APIs in a different domain; CORS provides a secure way to allow one domain (the origin domain) to call APIs in another domain",
-      "type": "object",
-      "required": [
-        "AllowedOrigins",
-        "AllowedMethods",
-        "AllowedHeaders",
-        "ExposedHeaders",
-        "MaxAgeInSeconds"
-      ],
-      "properties": {
-        "AllowedOrigins": {
-          "description": "The origin domains that are permitted to make a request against the storage service via CORS. The origin domain is the domain from which the request originates. Note that the origin must be an exact case-sensitive match with the origin that the user age sends to the service. You can also use the wildcard character '*' to allow all origin domains to make requests via CORS.",
-          "type": "string"
-        },
-        "AllowedMethods": {
-          "description": "The methods (HTTP request verbs) that the origin domain may use for a CORS request. (comma separated)",
-          "type": "string"
-        },
-        "AllowedHeaders": {
-          "description": "the request headers that the origin domain may specify on the CORS request.",
-          "type": "string"
-        },
-        "ExposedHeaders": {
-          "description": "The response headers that may be sent in the response to the CORS request and exposed by the browser to the request issuer",
-          "type": "string"
-        },
-        "MaxAgeInSeconds": {
-          "description": "The maximum amount time that a browser should cache the preflight OPTIONS request.",
-          "type": "integer",
-          "minimum": 0
-        }
-      }
-    },
-    "ErrorCode": {
-      "description": "Error codes returned by the service",
-      "type": "string",
-      "enum": [
-        "AccountAlreadyExists",
-        "AccountBeingCreated",
-        "AccountIsDisabled",
-        "AuthenticationFailed",
-        "ConditionHeadersNotSupported",
-        "ConditionNotMet",
-        "EmptyMetadataKey",
-        "InsufficientAccountPermissions",
-        "InternalError",
-        "InvalidAuthenticationInfo",
-        "InvalidHeaderValue",
-        "InvalidHttpVerb",
-        "InvalidInput",
-        "InvalidMd5",
-        "InvalidMetadata",
-        "InvalidQueryParameterValue",
-        "InvalidRange",
-        "InvalidResourceName",
-        "InvalidUri",
-        "InvalidXmlDocument",
-        "InvalidXmlNodeValue",
-        "Md5Mismatch",
-        "MetadataTooLarge",
-        "MissingContentLengthHeader",
-        "MissingRequiredQueryParameter",
-        "MissingRequiredHeader",
-        "MissingRequiredXmlNode",
-        "MultipleConditionHeadersNotSupported",
-        "OperationTimedOut",
-        "OutOfRangeInput",
-        "OutOfRangeQueryParameterValue",
-        "RequestBodyTooLarge",
-        "ResourceTypeMismatch",
-        "RequestUrlFailedToParse",
-        "ResourceAlreadyExists",
-        "ResourceNotFound",
-        "ServerBusy",
-        "UnsupportedHeader",
-        "UnsupportedXmlNode",
-        "UnsupportedQueryParameter",
-        "UnsupportedHttpVerb",
-        "AppendPositionConditionNotMet",
-        "BlobAlreadyExists",
-        "BlobNotFound",
-        "BlobOverwritten",
-        "BlobTierInadequateForContentLength",
-        "BlockCountExceedsLimit",
-        "BlockListTooLong",
-        "CannotChangeToLowerTier",
-        "CannotVerifyCopySource",
-        "ContainerAlreadyExists",
-        "ContainerBeingDeleted",
-        "ContainerDisabled",
-        "ContainerNotFound",
-        "ConcurrentContainerOperationInProgress",
-        "DeletedContainerNotFound",
-        "ContentLengthLargerThanTierLimit",
-        "CopyAcrossAccountsNotSupported",
-        "CopyIdMismatch",
-        "FeatureVersionMismatch",
-        "IncrementalCopyBlobMismatch",
-        "IncrementalCopyOfEralierVersionSnapshotNotAllowed",
-        "IncrementalCopySourceMustBeSnapshot",
-        "InfiniteLeaseDurationRequired",
-        "InvalidBlobOrBlock",
-        "InvalidBlobTier",
-        "InvalidBlobType",
-        "InvalidBlockId",
-        "InvalidBlockList",
-        "InvalidOperation",
-        "InvalidPageRange",
-        "InvalidSourceBlobType",
-        "InvalidSourceBlobUrl",
-        "InvalidVersionForPageBlobOperation",
-        "LeaseAlreadyPresent",
-        "LeaseAlreadyBroken",
-        "LeaseIdMismatchWithBlobOperation",
-        "LeaseIdMismatchWithContainerOperation",
-        "LeaseIdMismatchWithLeaseOperation",
-        "LeaseIdMissing",
-        "LeaseIsBreakingAndCannotBeAcquired",
-        "LeaseIsBreakingAndCannotBeChanged",
-        "LeaseIsBrokenAndCannotBeRenewed",
-        "LeaseLost",
-        "LeaseNotPresentWithBlobOperation",
-        "LeaseNotPresentWithContainerOperation",
-        "LeaseNotPresentWithLeaseOperation",
-        "MaxBlobSizeConditionNotMet",
-        "NoPendingCopyOperation",
-        "OperationNotAllowedOnIncrementalCopyBlob",
-        "PendingCopyOperation",
-        "PreviousSnapshotCannotBeNewer",
-        "PreviousSnapshotNotFound",
-        "PreviousSnapshotOperationNotSupported",
-        "SequenceNumberConditionNotMet",
-        "SequenceNumberIncrementTooLarge",
-        "SnapshotCountExceeded",
-        "SnaphotOperationRateExceeded",
-        "SnapshotsPresent",
-        "SourceConditionNotMet",
-        "SystemInUse",
-        "TargetConditionNotMet",
-        "UnauthorizedBlobOverwrite",
-        "BlobBeingRehydrated",
-        "BlobArchived",
-        "BlobNotArchived"
-      ],
-      "x-ms-enum": {
-        "name": "StorageErrorCode",
-        "modelAsString": true
-      }
-    },
-    "FilterBlobsItem": {
-      "xml": {
-        "name": "Blob"
-      },
-      "type": "object",
-      "properties": {
-        "Name": {
-          "type": "string"
-        },
-        "ContainerName": {
-          "type": "string"
-        },
-        "TagValue": {
-          "type": "string"
-        }
-      }
-    },
-    "FilterBlobsSegment": {
-      "xml": {
-        "name": "Blobs"
-      },
-      "type": "object",
-      "properties": {
-        "BlobItems": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/FilterBlobsItem"
-          }
-        }
-      }
-    },
-    "FilterBlobsResponse": {
-      "xml": {
-        "name": "EnumerationResults"
-      },
-      "description": "An enumeration of blobs which matched the filter.",
-      "type": "object",
-      "required": [
-        "ServiceEndpoint",
-        "Filter",
-        "Segment",
-        "NextMarker"
-      ],
-      "properties": {
-        "ServiceEndpoint": {
-          "type": "string",
-          "xml": {
-            "attribute": true
-          }
-        },
-        "Filter": {
-          "type": "string"
-        },
-        "Marker": {
-          "type": "string"
-        },
-        "MaxResults": {
-          "type": "integer"
-        },
-        "Segment": {
-          "$ref": "#/definitions/FilterBlobsSegment"
-        },
-        "NextMarker": {
-          "type": "string"
-        }
-      }
-    },
-    "GeoReplication": {
-      "description": "Geo-Replication information for the Secondary Storage Service",
-      "type": "object",
-      "required": [
-        "Status",
-        "LastSyncTime"
-      ],
-      "properties": {
-        "Status": {
-          "description": "The status of the secondary location",
-          "type": "string",
-          "enum": [
-            "live",
-            "bootstrap",
-            "unavailable"
-          ],
-          "x-ms-enum": {
-            "name": "GeoReplicationStatusType",
-            "modelAsString": true
-          }
-        },
-        "LastSyncTime": {
-          "description": "A GMT date/time value, to the second. All primary writes preceding this value are guaranteed to be available for read operations at the secondary. Primary writes after this point in time may or may not be available for reads.",
-          "type": "string",
-          "format": "date-time-rfc1123"
-        }
-      }
-    },
-    "Logging": {
-      "description": "Azure Analytics Logging settings.",
-      "type": "object",
-      "required": [
-        "Version",
-        "Delete",
-        "Read",
-        "Write",
-        "RetentionPolicy"
-      ],
-      "properties": {
-        "Version": {
-          "description": "The version of Storage Analytics to configure.",
-          "type": "string"
-        },
-        "Delete": {
-          "description": "Indicates whether all delete requests should be logged.",
-          "type": "boolean"
-        },
-        "Read": {
-          "description": "Indicates whether all read requests should be logged.",
-          "type": "boolean"
-        },
-        "Write": {
-          "description": "Indicates whether all write requests should be logged.",
-          "type": "boolean"
-        },
-        "RetentionPolicy": {
-          "$ref": "#/definitions/RetentionPolicy"
-        }
-      }
-    },
-    "ContainerMetadata": {
-      "type": "object",
-      "xml": {
-        "name": "Metadata"
-      },
-      "additionalProperties": {
-        "type": "string"
-      }
-    },
-    "BlobMetadata": {
-      "type": "object",
-      "xml": {
-        "name": "Metadata"
-      },
-      "properties": {
-        "Encrypted": {
-          "type": "string",
-          "xml": {
-            "attribute": true
-          }
-        }
-      },
-      "additionalProperties": {
-        "type": "string"
-      }
-    },
-    "Metrics": {
-      "description": "a summary of request statistics grouped by API in hour or minute aggregates for blobs",
-      "required": [
-        "Enabled"
-      ],
-      "properties": {
-        "Version": {
-          "description": "The version of Storage Analytics to configure.",
-          "type": "string"
-        },
-        "Enabled": {
-          "description": "Indicates whether metrics are enabled for the Blob service.",
-          "type": "boolean"
-        },
-        "IncludeAPIs": {
-          "description": "Indicates whether metrics should generate summary statistics for called API operations.",
-          "type": "boolean"
-        },
-        "RetentionPolicy": {
-          "$ref": "#/definitions/RetentionPolicy"
-        }
-      }
-    },
-    "PageList": {
-      "description": "the list of pages",
-      "type": "object",
-      "properties": {
-        "PageRange": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/PageRange"
-          }
-        },
-        "ClearRange": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/ClearRange"
-          }
-        }
-      }
-    },
-    "PageRange": {
-      "type": "object",
-      "required": [
-        "Start",
-        "End"
-      ],
-      "properties": {
-        "Start": {
-          "type": "integer",
-          "format": "int64",
-          "xml": {
-            "name": "Start"
-          }
-        },
-        "End": {
-          "type": "integer",
-          "format": "int64",
-          "xml": {
-            "name": "End"
-          }
-        }
-      },
-      "xml": {
-        "name": "PageRange"
-      }
-    },
-    "ClearRange": {
-      "type": "object",
-      "required": [
-        "Start",
-        "End"
-      ],
-      "properties": {
-        "Start": {
-          "type": "integer",
-          "format": "int64",
-          "xml": {
-            "name": "Start"
-          }
-        },
-        "End": {
-          "type": "integer",
-          "format": "int64",
-          "xml": {
-            "name": "End"
-          }
-        }
-      },
-      "xml": {
-        "name": "ClearRange"
-      }
-    },
-    "RetentionPolicy": {
-      "description": "the retention policy which determines how long the associated data should persist",
-      "type": "object",
-      "required": [
-        "Enabled"
-      ],
-      "properties": {
-        "Enabled": {
-          "description": "Indicates whether a retention policy is enabled for the storage service",
-          "type": "boolean"
-        },
-        "Days": {
-          "description": "Indicates the number of days that metrics or logging or soft-deleted data should be retained. All data older than this value will be deleted",
-          "type": "integer",
-          "minimum": 1
-        }
-      }
-    },
-    "SignedIdentifier": {
-      "xml": {
-        "name": "SignedIdentifier"
-      },
-      "description": "signed identifier",
-      "type": "object",
-      "required": [
-        "Id",
-        "AccessPolicy"
-      ],
-      "properties": {
-        "Id": {
-          "type": "string",
-          "description": "a unique id"
+        "DataLakeStorageError": {
+            "type": "object",
+            "properties": {
+                "error": {
+                    "description": "The service error response object.",
+                    "properties": {
+                        "code": {
+                            "description": "The service error code.",
+                            "type": "string"
+                        },
+                        "message": {
+                            "description": "The service error message.",
+                            "type": "string"
+                        }
+                    }
+                }
+            }
         },
         "AccessPolicy": {
-          "$ref": "#/definitions/AccessPolicy"
-        }
-      }
-    },
-    "SignedIdentifiers": {
-      "description": "a collection of signed identifiers",
-      "type": "array",
-      "items": {
-        "$ref": "#/definitions/SignedIdentifier"
-      },
-      "xml": {
-        "wrapped": true,
-        "name": "SignedIdentifiers"
-      }
-    },
-    "StaticWebsite": {
-      "description": "The properties that enable an account to host a static website",
-      "type": "object",
-      "required": [
-        "Enabled"
-      ],
-      "properties": {
-        "Enabled": {
-          "description": "Indicates whether this account is hosting a static website",
-          "type": "boolean"
+            "type": "object",
+            "required": [
+                "Start",
+                "Expiry",
+                "Permission"
+            ],
+            "description": "An Access policy",
+            "properties": {
+                "Start": {
+                    "description": "the date-time the policy is active",
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "Expiry": {
+                    "description": "the date-time the policy expires",
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "Permission": {
+                    "description": "the permissions for the acl policy",
+                    "type": "string"
+                }
+            }
         },
-        "IndexDocument": {
-          "description": "The default name of the index page under each directory",
-          "type": "string"
+        "AccessTier": {
+            "type": "string",
+            "enum": [
+                "P4",
+                "P6",
+                "P10",
+                "P20",
+                "P30",
+                "P40",
+                "P50",
+                "Hot",
+                "Cool",
+                "Archive"
+            ],
+            "x-ms-enum": {
+                "name": "AccessTier",
+                "modelAsString": true
+            }
         },
-        "ErrorDocument404Path": {
-          "description": "The absolute path of the custom 404 page",
-          "type": "string"
-        }
-      }
-    },
-    "StorageServiceProperties": {
-      "description": "Storage Service Properties.",
-      "type": "object",
-      "properties": {
+        "ArchiveStatus": {
+            "type": "string",
+            "enum": [
+                "rehydrate-pending-to-hot",
+                "rehydrate-pending-to-cool"
+            ],
+            "x-ms-enum": {
+                "name": "ArchiveStatus",
+                "modelAsString": true
+            }
+        },
+        "BlobItem": {
+            "xml": {
+                "name": "Blob"
+            },
+            "description": "An Azure Storage blob",
+            "type": "object",
+            "required": [
+                "Name",
+                "Deleted",
+                "Snapshot",
+                "VersionId",
+                "Properties"
+            ],
+            "properties": {
+                "Name": {
+                    "type": "string"
+                },
+                "Deleted": {
+                    "type": "boolean"
+                },
+                "Snapshot": {
+                    "type": "string"
+                },
+                "VersionId": {
+                    "type": "string"
+                },
+                "Properties": {
+                    "$ref": "#/definitions/BlobProperties"
+                },
+                "Metadata": {
+                    "$ref": "#/definitions/BlobMetadata"
+                },
+                "Tags": {
+                    "$ref": "#/definitions/BlobTags"
+                }
+            }
+        },
+        "BlobProperties": {
+            "xml": {
+                "name": "Properties"
+            },
+            "description": "Properties of a blob",
+            "type": "object",
+            "required": [
+                "Etag",
+                "Last-Modified",
+                "TagCount"
+            ],
+            "properties": {
+                "Creation-Time": {
+                    "type": "string",
+                    "format": "date-time-rfc1123"
+                },
+                "Last-Modified": {
+                    "type": "string",
+                    "format": "date-time-rfc1123"
+                },
+                "Etag": {
+                    "type": "string",
+                    "format": "etag"
+                },
+                "Content-Length": {
+                    "type": "integer",
+                    "format": "int64",
+                    "description": "Size in bytes"
+                },
+                "Content-Type": {
+                    "type": "string"
+                },
+                "Content-Encoding": {
+                    "type": "string"
+                },
+                "Content-Language": {
+                    "type": "string"
+                },
+                "Content-MD5": {
+                    "type": "string",
+                    "format": "byte"
+                },
+                "Content-Disposition": {
+                    "type": "string"
+                },
+                "Cache-Control": {
+                    "type": "string"
+                },
+                "x-ms-blob-sequence-number": {
+                    "x-ms-client-name": "blobSequenceNumber",
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "BlobType": {
+                    "type": "string",
+                    "enum": [
+                        "BlockBlob",
+                        "PageBlob",
+                        "AppendBlob"
+                    ],
+                    "x-ms-enum": {
+                        "name": "BlobType",
+                        "modelAsString": false
+                    }
+                },
+                "LeaseStatus": {
+                    "$ref": "#/definitions/LeaseStatus"
+                },
+                "LeaseState": {
+                    "$ref": "#/definitions/LeaseState"
+                },
+                "LeaseDuration": {
+                    "$ref": "#/definitions/LeaseDuration"
+                },
+                "CopyId": {
+                    "type": "string"
+                },
+                "CopyStatus": {
+                    "$ref": "#/definitions/CopyStatus"
+                },
+                "CopySource": {
+                    "type": "string"
+                },
+                "CopyProgress": {
+                    "type": "string"
+                },
+                "CopyCompletionTime": {
+                    "type": "string",
+                    "format": "date-time-rfc1123"
+                },
+                "CopyStatusDescription": {
+                    "type": "string"
+                },
+                "ServerEncrypted": {
+                    "type": "boolean"
+                },
+                "IncrementalCopy": {
+                    "type": "boolean"
+                },
+                "DestinationSnapshot": {
+                    "type": "string"
+                },
+                "DeletedTime": {
+                    "type": "string",
+                    "format": "date-time-rfc1123"
+                },
+                "RemainingRetentionDays": {
+                    "type": "integer"
+                },
+                "AccessTier": {
+                    "$ref": "#/definitions/AccessTier"
+                },
+                "AccessTierInferred": {
+                    "type": "boolean"
+                },
+                "ArchiveStatus": {
+                    "$ref": "#/definitions/ArchiveStatus"
+                },
+                "CustomerProvidedKeySha256": {
+                    "type": "string"
+                },
+                "CustomerProvidedKeyName": {
+                    "type": "string"
+                },
+                "AccessTierChangeTime": {
+                    "type": "string",
+                    "format": "date-time-rfc1123"
+                },
+                "TagCount": {
+                    "type": "integer",
+                    "description": "The number of tags corresponding to the blob."
+                }
+            }
+        },
+        "ListBlobsFlatSegmentResponse": {
+            "xml": {
+                "name": "EnumerationResults"
+            },
+            "description": "An enumeration of blobs",
+            "type": "object",
+            "required": [
+                "ServiceEndpoint",
+                "ContainerName",
+                "Segment"
+            ],
+            "properties": {
+                "ServiceEndpoint": {
+                    "type": "string",
+                    "xml": {
+                        "attribute": true
+                    }
+                },
+                "ContainerName": {
+                    "type": "string",
+                    "xml": {
+                        "attribute": true
+                    }
+                },
+                "Prefix": {
+                    "type": "string"
+                },
+                "Marker": {
+                    "type": "string"
+                },
+                "MaxResults": {
+                    "type": "integer"
+                },
+                "Delimiter": {
+                    "type": "string"
+                },
+                "Segment": {
+                    "$ref": "#/definitions/BlobFlatListSegment"
+                },
+                "NextMarker": {
+                    "type": "string"
+                }
+            }
+        },
+        "ListBlobsHierarchySegmentResponse": {
+            "xml": {
+                "name": "EnumerationResults"
+            },
+            "description": "An enumeration of blobs",
+            "type": "object",
+            "required": [
+                "ServiceEndpoint",
+                "ContainerName",
+                "Prefix",
+                "Marker",
+                "MaxResults",
+                "Delimiter",
+                "Segment",
+                "NextMarker"
+            ],
+            "properties": {
+                "ServiceEndpoint": {
+                    "type": "string",
+                    "xml": {
+                        "attribute": true
+                    }
+                },
+                "ContainerName": {
+                    "type": "string",
+                    "xml": {
+                        "attribute": true
+                    }
+                },
+                "Prefix": {
+                    "type": "string"
+                },
+                "Marker": {
+                    "type": "string"
+                },
+                "MaxResults": {
+                    "type": "integer"
+                },
+                "Delimiter": {
+                    "type": "string"
+                },
+                "Segment": {
+                    "$ref": "#/definitions/BlobHierarchyListSegment"
+                },
+                "NextMarker": {
+                    "type": "string"
+                }
+            }
+        },
+        "BlobFlatListSegment": {
+            "xml": {
+                "name": "Blobs"
+            },
+            "required": [
+                "BlobItems"
+            ],
+            "type": "object",
+            "properties": {
+                "BlobItems": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/BlobItem"
+                    }
+                }
+            }
+        },
+        "BlobHierarchyListSegment": {
+            "xml": {
+                "name": "Blobs"
+            },
+            "type": "object",
+            "required": [
+                "BlobItems"
+            ],
+            "properties": {
+                "BlobPrefixes": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/BlobPrefix"
+                    }
+                },
+                "BlobItems": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/BlobItem"
+                    }
+                }
+            }
+        },
+        "BlobPrefix": {
+            "type": "object",
+            "required": [
+                "Name"
+            ],
+            "properties": {
+                "Name": {
+                    "type": "string"
+                }
+            }
+        },
+        "Tag": {
+            "type": "object",
+            "required": [
+                "Key",
+                "Value"
+            ],
+            "description": "Represents a single user-provided tag.",
+            "properties": {
+                "Key": {
+                    "description": "The tag name.",
+                    "type": "string"
+                },
+                "Value": {
+                    "description": "The tag value.",
+                    "type": "string"
+                }
+            }
+        },
+        "BlobTags": {
+            "xml": {
+                "name": "Tags"
+            },
+            "description": "XML containing key/value pairs representing the tags for the blob.",
+            "properties": {
+                "TagSet": {
+                    "xml": {
+                        "wrapped": true
+                    },
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/Tag"
+                    }
+                }
+            }
+        },
+        "Block": {
+            "type": "object",
+            "required": [
+                "Name",
+                "Size"
+            ],
+            "description": "Represents a single block in a block blob.  It describes the block's ID and size.",
+            "properties": {
+                "Name": {
+                    "description": "The base64 encoded block ID.",
+                    "type": "string"
+                },
+                "Size": {
+                    "description": "The block size in bytes.",
+                    "type": "integer"
+                }
+            }
+        },
+        "BlockList": {
+            "type": "object",
+            "properties": {
+                "CommittedBlocks": {
+                    "xml": {
+                        "wrapped": true
+                    },
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/Block"
+                    }
+                },
+                "UncommittedBlocks": {
+                    "xml": {
+                        "wrapped": true
+                    },
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/Block"
+                    }
+                }
+            }
+        },
+        "BlockLookupList": {
+            "type": "object",
+            "properties": {
+                "Committed": {
+                    "type": "array",
+                    "items": {
+                        "type": "string",
+                        "xml": {
+                            "name": "Committed"
+                        }
+                    }
+                },
+                "Uncommitted": {
+                    "type": "array",
+                    "items": {
+                        "type": "string",
+                        "xml": {
+                            "name": "Uncommitted"
+                        }
+                    }
+                },
+                "Latest": {
+                    "type": "array",
+                    "items": {
+                        "type": "string",
+                        "xml": {
+                            "name": "Latest"
+                        }
+                    }
+                }
+            },
+            "xml": {
+                "name": "BlockList"
+            }
+        },
+        "ContainerItem": {
+            "xml": {
+                "name": "Container"
+            },
+            "type": "object",
+            "required": [
+                "Name",
+                "Properties"
+            ],
+            "description": "An Azure Storage container",
+            "properties": {
+                "Name": {
+                    "type": "string"
+                },
+                "Deleted": {
+                    "type": "boolean"
+                },
+                "Version": {
+                    "type": "string"
+                },
+                "Properties": {
+                    "$ref": "#/definitions/ContainerProperties"
+                },
+                "Metadata": {
+                    "$ref": "#/definitions/ContainerMetadata"
+                }
+            }
+        },
+        "ContainerProperties": {
+            "type": "object",
+            "required": [
+                "Last-Modified",
+                "Etag"
+            ],
+            "description": "Properties of a container",
+            "properties": {
+                "Last-Modified": {
+                    "type": "string",
+                    "format": "date-time-rfc1123"
+                },
+                "Etag": {
+                    "type": "string",
+                    "format": "etag"
+                },
+                "LeaseStatus": {
+                    "$ref": "#/definitions/LeaseStatus"
+                },
+                "LeaseState": {
+                    "$ref": "#/definitions/LeaseState"
+                },
+                "LeaseDuration": {
+                    "$ref": "#/definitions/LeaseDuration"
+                },
+                "PublicAccess": {
+                    "$ref": "#/definitions/PublicAccessType"
+                },
+                "HasImmutabilityPolicy": {
+                    "type": "boolean"
+                },
+                "HasLegalHold": {
+                    "type": "boolean"
+                },
+                "DeletedTime": {
+                    "type": "string",
+                    "format": "date-time-rfc1123"
+                },
+                "RemainingRetentionDays": {
+                    "type": "integer"
+                }
+            }
+        },
+        "ListContainersSegmentResponse": {
+            "xml": {
+                "name": "EnumerationResults"
+            },
+            "description": "An enumeration of containers",
+            "type": "object",
+            "required": [
+                "ServiceEndpoint",
+                "ContainerItems"
+            ],
+            "properties": {
+                "ServiceEndpoint": {
+                    "type": "string",
+                    "xml": {
+                        "attribute": true
+                    }
+                },
+                "Prefix": {
+                    "type": "string"
+                },
+                "Marker": {
+                    "type": "string"
+                },
+                "MaxResults": {
+                    "type": "integer"
+                },
+                "ContainerItems": {
+                    "xml": {
+                        "wrapped": true,
+                        "name": "Containers"
+                    },
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/ContainerItem"
+                    }
+                },
+                "NextMarker": {
+                    "type": "string"
+                }
+            }
+        },
+        "CorsRule": {
+            "description": "CORS is an HTTP feature that enables a web application running under one domain to access resources in another domain. Web browsers implement a security restriction known as same-origin policy that prevents a web page from calling APIs in a different domain; CORS provides a secure way to allow one domain (the origin domain) to call APIs in another domain",
+            "type": "object",
+            "required": [
+                "AllowedOrigins",
+                "AllowedMethods",
+                "AllowedHeaders",
+                "ExposedHeaders",
+                "MaxAgeInSeconds"
+            ],
+            "properties": {
+                "AllowedOrigins": {
+                    "description": "The origin domains that are permitted to make a request against the storage service via CORS. The origin domain is the domain from which the request originates. Note that the origin must be an exact case-sensitive match with the origin that the user age sends to the service. You can also use the wildcard character '*' to allow all origin domains to make requests via CORS.",
+                    "type": "string"
+                },
+                "AllowedMethods": {
+                    "description": "The methods (HTTP request verbs) that the origin domain may use for a CORS request. (comma separated)",
+                    "type": "string"
+                },
+                "AllowedHeaders": {
+                    "description": "the request headers that the origin domain may specify on the CORS request.",
+                    "type": "string"
+                },
+                "ExposedHeaders": {
+                    "description": "The response headers that may be sent in the response to the CORS request and exposed by the browser to the request issuer",
+                    "type": "string"
+                },
+                "MaxAgeInSeconds": {
+                    "description": "The maximum amount time that a browser should cache the preflight OPTIONS request.",
+                    "type": "integer",
+                    "minimum": 0
+                }
+            }
+        },
+        "ErrorCode": {
+            "description": "Error codes returned by the service",
+            "type": "string",
+            "enum": [
+                "AccountAlreadyExists",
+                "AccountBeingCreated",
+                "AccountIsDisabled",
+                "AuthenticationFailed",
+                "ConditionHeadersNotSupported",
+                "ConditionNotMet",
+                "EmptyMetadataKey",
+                "InsufficientAccountPermissions",
+                "InternalError",
+                "InvalidAuthenticationInfo",
+                "InvalidHeaderValue",
+                "InvalidHttpVerb",
+                "InvalidInput",
+                "InvalidMd5",
+                "InvalidMetadata",
+                "InvalidQueryParameterValue",
+                "InvalidRange",
+                "InvalidResourceName",
+                "InvalidUri",
+                "InvalidXmlDocument",
+                "InvalidXmlNodeValue",
+                "Md5Mismatch",
+                "MetadataTooLarge",
+                "MissingContentLengthHeader",
+                "MissingRequiredQueryParameter",
+                "MissingRequiredHeader",
+                "MissingRequiredXmlNode",
+                "MultipleConditionHeadersNotSupported",
+                "OperationTimedOut",
+                "OutOfRangeInput",
+                "OutOfRangeQueryParameterValue",
+                "RequestBodyTooLarge",
+                "ResourceTypeMismatch",
+                "RequestUrlFailedToParse",
+                "ResourceAlreadyExists",
+                "ResourceNotFound",
+                "ServerBusy",
+                "UnsupportedHeader",
+                "UnsupportedXmlNode",
+                "UnsupportedQueryParameter",
+                "UnsupportedHttpVerb",
+                "AppendPositionConditionNotMet",
+                "BlobAlreadyExists",
+                "BlobNotFound",
+                "BlobOverwritten",
+                "BlobTierInadequateForContentLength",
+                "BlockCountExceedsLimit",
+                "BlockListTooLong",
+                "CannotChangeToLowerTier",
+                "CannotVerifyCopySource",
+                "ContainerAlreadyExists",
+                "ContainerBeingDeleted",
+                "ContainerDisabled",
+                "ContainerNotFound",
+                "ConcurrentContainerOperationInProgress",
+                "DeletedContainerNotFound",
+                "ContentLengthLargerThanTierLimit",
+                "CopyAcrossAccountsNotSupported",
+                "CopyIdMismatch",
+                "FeatureVersionMismatch",
+                "IncrementalCopyBlobMismatch",
+                "IncrementalCopyOfEralierVersionSnapshotNotAllowed",
+                "IncrementalCopySourceMustBeSnapshot",
+                "InfiniteLeaseDurationRequired",
+                "InvalidBlobOrBlock",
+                "InvalidBlobTier",
+                "InvalidBlobType",
+                "InvalidBlockId",
+                "InvalidBlockList",
+                "InvalidOperation",
+                "InvalidPageRange",
+                "InvalidSourceBlobType",
+                "InvalidSourceBlobUrl",
+                "InvalidVersionForPageBlobOperation",
+                "LeaseAlreadyPresent",
+                "LeaseAlreadyBroken",
+                "LeaseIdMismatchWithBlobOperation",
+                "LeaseIdMismatchWithContainerOperation",
+                "LeaseIdMismatchWithLeaseOperation",
+                "LeaseIdMissing",
+                "LeaseIsBreakingAndCannotBeAcquired",
+                "LeaseIsBreakingAndCannotBeChanged",
+                "LeaseIsBrokenAndCannotBeRenewed",
+                "LeaseLost",
+                "LeaseNotPresentWithBlobOperation",
+                "LeaseNotPresentWithContainerOperation",
+                "LeaseNotPresentWithLeaseOperation",
+                "MaxBlobSizeConditionNotMet",
+                "NoPendingCopyOperation",
+                "OperationNotAllowedOnIncrementalCopyBlob",
+                "PendingCopyOperation",
+                "PreviousSnapshotCannotBeNewer",
+                "PreviousSnapshotNotFound",
+                "PreviousSnapshotOperationNotSupported",
+                "SequenceNumberConditionNotMet",
+                "SequenceNumberIncrementTooLarge",
+                "SnapshotCountExceeded",
+                "SnaphotOperationRateExceeded",
+                "SnapshotsPresent",
+                "SourceConditionNotMet",
+                "SystemInUse",
+                "TargetConditionNotMet",
+                "UnauthorizedBlobOverwrite",
+                "BlobBeingRehydrated",
+                "BlobArchived",
+                "BlobNotArchived"
+            ],
+            "x-ms-enum": {
+                "name": "StorageErrorCode",
+                "modelAsString": true
+            }
+        },
+        "FilterBlobsItem": {
+            "xml": {
+                "name": "Blob"
+            },
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "type": "string"
+                },
+                "ContainerName": {
+                    "type": "string"
+                },
+                "TagValue": {
+                    "type": "string"
+                }
+            }
+        },
+        "FilterBlobsSegment": {
+            "xml": {
+                "name": "Blobs"
+            },
+            "type": "object",
+            "properties": {
+                "BlobItems": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/FilterBlobsItem"
+                    }
+                }
+            }
+        },
+        "FilterBlobsResponse": {
+            "xml": {
+                "name": "EnumerationResults"
+            },
+            "description": "An enumeration of blobs which matched the filter.",
+            "type": "object",
+            "required": [
+                "ServiceEndpoint",
+                "Filter",
+                "Segment",
+                "NextMarker"
+            ],
+            "properties": {
+                "ServiceEndpoint": {
+                    "type": "string",
+                    "xml": {
+                        "attribute": true
+                    }
+                },
+                "Filter": {
+                    "type": "string"
+                },
+                "Marker": {
+                    "type": "string"
+                },
+                "MaxResults": {
+                    "type": "integer"
+                },
+                "Segment": {
+                    "$ref": "#/definitions/FilterBlobsSegment"
+                },
+                "NextMarker": {
+                    "type": "string"
+                }
+            }
+        },
+        "GeoReplication": {
+            "description": "Geo-Replication information for the Secondary Storage Service",
+            "type": "object",
+            "required": [
+                "Status",
+                "LastSyncTime"
+            ],
+            "properties": {
+                "Status": {
+                    "description": "The status of the secondary location",
+                    "type": "string",
+                    "enum": [
+                        "live",
+                        "bootstrap",
+                        "unavailable"
+                    ],
+                    "x-ms-enum": {
+                        "name": "GeoReplicationStatusType",
+                        "modelAsString": true
+                    }
+                },
+                "LastSyncTime": {
+                    "description": "A GMT date/time value, to the second. All primary writes preceding this value are guaranteed to be available for read operations at the secondary. Primary writes after this point in time may or may not be available for reads.",
+                    "type": "string",
+                    "format": "date-time-rfc1123"
+                }
+            }
+        },
         "Logging": {
-          "$ref": "#/definitions/Logging"
+            "description": "Azure Analytics Logging settings.",
+            "type": "object",
+            "required": [
+                "Version",
+                "Delete",
+                "Read",
+                "Write",
+                "RetentionPolicy"
+            ],
+            "properties": {
+                "Version": {
+                    "description": "The version of Storage Analytics to configure.",
+                    "type": "string"
+                },
+                "Delete": {
+                    "description": "Indicates whether all delete requests should be logged.",
+                    "type": "boolean"
+                },
+                "Read": {
+                    "description": "Indicates whether all read requests should be logged.",
+                    "type": "boolean"
+                },
+                "Write": {
+                    "description": "Indicates whether all write requests should be logged.",
+                    "type": "boolean"
+                },
+                "RetentionPolicy": {
+                    "$ref": "#/definitions/RetentionPolicy"
+                }
+            }
         },
-        "HourMetrics": {
-          "$ref": "#/definitions/Metrics"
+        "ContainerMetadata": {
+            "type": "object",
+            "xml": {
+                "name": "Metadata"
+            },
+            "additionalProperties": {
+                "type": "string"
+            }
         },
-        "MinuteMetrics": {
-          "$ref": "#/definitions/Metrics"
+        "BlobMetadata": {
+            "type": "object",
+            "xml": {
+                "name": "Metadata"
+            },
+            "properties": {
+                "Encrypted": {
+                    "type": "string",
+                    "xml": {
+                        "attribute": true
+                    }
+                }
+            },
+            "additionalProperties": {
+                "type": "string"
+            }
         },
-        "Cors": {
-          "description": "The set of CORS rules.",
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/CorsRule"
-          },
-          "xml": {
-            "wrapped": true
-          }
+        "Metrics": {
+            "description": "a summary of request statistics grouped by API in hour or minute aggregates for blobs",
+            "required": [
+                "Enabled"
+            ],
+            "properties": {
+                "Version": {
+                    "description": "The version of Storage Analytics to configure.",
+                    "type": "string"
+                },
+                "Enabled": {
+                    "description": "Indicates whether metrics are enabled for the Blob service.",
+                    "type": "boolean"
+                },
+                "IncludeAPIs": {
+                    "description": "Indicates whether metrics should generate summary statistics for called API operations.",
+                    "type": "boolean"
+                },
+                "RetentionPolicy": {
+                    "$ref": "#/definitions/RetentionPolicy"
+                }
+            }
         },
-        "DefaultServiceVersion": {
-          "description": "The default version to use for requests to the Blob service if an incoming request's version is not specified. Possible values include version 2008-10-27 and all more recent versions",
-          "type": "string"
+        "PageList": {
+            "description": "the list of pages",
+            "type": "object",
+            "properties": {
+                "PageRange": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/PageRange"
+                    }
+                },
+                "ClearRange": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/ClearRange"
+                    }
+                }
+            }
         },
-        "DeleteRetentionPolicy": {
-          "$ref": "#/definitions/RetentionPolicy"
+        "PageRange": {
+            "type": "object",
+            "required": [
+                "Start",
+                "End"
+            ],
+            "properties": {
+                "Start": {
+                    "type": "integer",
+                    "format": "int64",
+                    "xml": {
+                        "name": "Start"
+                    }
+                },
+                "End": {
+                    "type": "integer",
+                    "format": "int64",
+                    "xml": {
+                        "name": "End"
+                    }
+                }
+            },
+            "xml": {
+                "name": "PageRange"
+            }
+        },
+        "ClearRange": {
+            "type": "object",
+            "required": [
+                "Start",
+                "End"
+            ],
+            "properties": {
+                "Start": {
+                    "type": "integer",
+                    "format": "int64",
+                    "xml": {
+                        "name": "Start"
+                    }
+                },
+                "End": {
+                    "type": "integer",
+                    "format": "int64",
+                    "xml": {
+                        "name": "End"
+                    }
+                }
+            },
+            "xml": {
+                "name": "ClearRange"
+            }
+        },
+        "RetentionPolicy": {
+            "description": "the retention policy which determines how long the associated data should persist",
+            "type": "object",
+            "required": [
+                "Enabled"
+            ],
+            "properties": {
+                "Enabled": {
+                    "description": "Indicates whether a retention policy is enabled for the storage service",
+                    "type": "boolean"
+                },
+                "Days": {
+                    "description": "Indicates the number of days that metrics or logging or soft-deleted data should be retained. All data older than this value will be deleted",
+                    "type": "integer",
+                    "minimum": 1
+                }
+            }
+        },
+        "SignedIdentifier": {
+            "xml": {
+                "name": "SignedIdentifier"
+            },
+            "description": "signed identifier",
+            "type": "object",
+            "required": [
+                "Id",
+                "AccessPolicy"
+            ],
+            "properties": {
+                "Id": {
+                    "type": "string",
+                    "description": "a unique id"
+                },
+                "AccessPolicy": {
+                    "$ref": "#/definitions/AccessPolicy"
+                }
+            }
+        },
+        "SignedIdentifiers": {
+            "description": "a collection of signed identifiers",
+            "type": "array",
+            "items": {
+                "$ref": "#/definitions/SignedIdentifier"
+            },
+            "xml": {
+                "wrapped": true,
+                "name": "SignedIdentifiers"
+            }
         },
         "StaticWebsite": {
-          "$ref": "#/definitions/StaticWebsite"
+            "description": "The properties that enable an account to host a static website",
+            "type": "object",
+            "required": [
+                "Enabled"
+            ],
+            "properties": {
+                "Enabled": {
+                    "description": "Indicates whether this account is hosting a static website",
+                    "type": "boolean"
+                },
+                "IndexDocument": {
+                    "description": "The default name of the index page under each directory",
+                    "type": "string"
+                },
+                "ErrorDocument404Path": {
+                    "description": "The absolute path of the custom 404 page",
+                    "type": "string"
+                }
+            }
+        },
+        "StorageServiceProperties": {
+            "description": "Storage Service Properties.",
+            "type": "object",
+            "properties": {
+                "Logging": {
+                    "$ref": "#/definitions/Logging"
+                },
+                "HourMetrics": {
+                    "$ref": "#/definitions/Metrics"
+                },
+                "MinuteMetrics": {
+                    "$ref": "#/definitions/Metrics"
+                },
+                "Cors": {
+                    "description": "The set of CORS rules.",
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/CorsRule"
+                    },
+                    "xml": {
+                        "wrapped": true
+                    }
+                },
+                "DefaultServiceVersion": {
+                    "description": "The default version to use for requests to the Blob service if an incoming request's version is not specified. Possible values include version 2008-10-27 and all more recent versions",
+                    "type": "string"
+                },
+                "DeleteRetentionPolicy": {
+                    "$ref": "#/definitions/RetentionPolicy"
+                },
+                "StaticWebsite": {
+                    "$ref": "#/definitions/StaticWebsite"
+                }
+            }
+        },
+        "StorageServiceStats": {
+            "description": "Stats for the storage service.",
+            "type": "object",
+            "properties": {
+                "GeoReplication": {
+                    "$ref": "#/definitions/GeoReplication"
+                }
+            }
         }
-      }
     },
-    "StorageServiceStats": {
-      "description": "Stats for the storage service.",
-      "type": "object",
-      "properties": {
-        "GeoReplication": {
-          "$ref": "#/definitions/GeoReplication"
-        }
-      }
-    }
-  },
     "parameters": {
         "Url": {
             "name": "url",
@@ -8947,7 +8947,7 @@
             "type": "string",
             "description": "Specifies the version of the operation to use for this request.",
             "enum": [
-                "2019-02-02"
+                "2019-04-04"
             ]
         },
         "Blob": {
@@ -9064,6 +9064,13 @@
             "required": false,
             "type": "string",
             "enum": [
+                "P4",
+                "P6",
+                "P10",
+                "P20",
+                "P30",
+                "P40",
+                "P50",
                 "Hot",
                 "Cool",
                 "Archive"

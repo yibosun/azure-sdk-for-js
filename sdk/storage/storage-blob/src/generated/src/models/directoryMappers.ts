@@ -7,17 +7,9 @@
  */
 
 export {
-  ClearRange,
-  PageBlobClearPagesHeaders,
-  PageBlobCopyIncrementalHeaders,
-  PageBlobCreateHeaders,
-  PageBlobGetPageRangesDiffHeaders,
-  PageBlobGetPageRangesHeaders,
-  PageBlobResizeHeaders,
-  PageBlobUpdateSequenceNumberHeaders,
-  PageBlobUploadPagesFromURLHeaders,
-  PageBlobUploadPagesHeaders,
-  PageList,
-  PageRange,
-  StorageError
+  DataLakeStorageError,
+  DataLakeStorageErrorError,
+  DirectoryCreateHeaders,
+  DirectoryDeleteHeaders,
+  DirectoryRenameHeaders
 } from "../models/mappers";

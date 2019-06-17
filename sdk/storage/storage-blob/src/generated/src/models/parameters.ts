@@ -7,8 +7,8 @@
  * Changes may cause incorrect behavior and will be lost if the code is
  * regenerated.
  */
-import * as msRest from "@azure/ms-rest-js";
 
+import * as msRest from "@azure/ms-rest-js";
 
 export const access: msRest.OperationParameter = {
   parameterPath: [
