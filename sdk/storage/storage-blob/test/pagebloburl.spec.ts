@@ -119,12 +119,17 @@ describe("PageBlobURL", () => {
     assert.deepStrictEqual(await bodyToString(result, 1024), "\u0000".repeat(1024));
 
     await pageBlobURL.uploadPages(Aborter.none, "b".repeat(1024), 0, 1024);
+    assert.deepStrictEqual(await bodyToString(await blobURL.download(Aborter.none, 0), 1024), "b".repeat(1024));
 
     const snapshotResult = await pageBlobURL.createSnapshot(Aborter.none);
     assert.ok(snapshotResult.snapshot);
 
     await pageBlobURL.uploadPages(Aborter.none, "a".repeat(512), 0, 512);
     await pageBlobURL.clearPages(Aborter.none, 512, 512);
+
+    const result2 = await blobURL.download(Aborter.none, 0);
+    const body2 = await bodyToString(result2, 1024);
+    assert.deepStrictEqual(body2, "a".repeat(512) + "\u0000".repeat(512));
 
     const rangesDiff = await pageBlobURL.getPageRangesDiff(
       Aborter.none,
@@ -134,8 +139,8 @@ describe("PageBlobURL", () => {
     );
     assert.equal(rangesDiff.pageRange![0].start, 0);
     assert.equal(rangesDiff.pageRange![0].end, 511);
-    // assert.equal(rangesDiff.clearRange![0].start, 512);
-    // assert.equal(rangesDiff.clearRange![0].end, 1023);
+    assert.equal(rangesDiff.clearRange![0].start, 512);
+    assert.equal(rangesDiff.clearRange![0].end, 1023);
   });
 
   it("getPageRangesDiff with previous URL", async () => {
@@ -153,7 +158,7 @@ describe("PageBlobURL", () => {
     await pageBlobURL.uploadPages(Aborter.none, "a".repeat(512), 0, 512);
     await pageBlobURL.clearPages(Aborter.none, 512, 512);
 
-    const rangesDiff = await pageBlobURL.getPageRangesDiff(
+    const rangesDiff = await pageBlobURL.getPageRangesDiffMD(
       Aborter.none,
       0,
       1024,
@@ -161,8 +166,8 @@ describe("PageBlobURL", () => {
     );
     assert.equal(rangesDiff.pageRange![0].start, 0);
     assert.equal(rangesDiff.pageRange![0].end, 511);
-    // assert.equal(rangesDiff.clearRange![0].start, 512);
-    // assert.equal(rangesDiff.clearRange![0].end, 1023);
+    assert.equal(rangesDiff.clearRange![0].start, 512);
+    assert.equal(rangesDiff.clearRange![0].end, 1023);
   });
 
   it("updateSequenceNumber", async () => {

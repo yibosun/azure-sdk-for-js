@@ -282,49 +282,45 @@ export class PageBlobURL extends BlobURL {
     offset: number,
     count: number,
     prevSnapshot: string,
-    options?: IPageBlobGetPageRangesDiffOptions
-  ): Promise<Models.PageBlobGetPageRangesDiffResponse>;
-
-  /**
-   * Gets the collection of page ranges that differ between a specified snapshot and this page blob.
-   * @see https://docs.microsoft.com/rest/api/storageservices/get-page-ranges
-   *
-   * @param {Aborter} aborter  Create a new Aborter instance with Aborter.none or Aborter.timeout(),
-                               goto documents of Aborter for more examples about request cancellation
-   * @param {number} offset
-   * @param {number} count
-   * @param {string} prevSnapshotURL A previous snapshot page blob URL
-   * @param {IPageBlobGetPageRangesDiffOptions} [options]
-   * @returns {Promise<Models.PageBlobGetPageRangesDiffResponse>}
-   * @memberof PageBlobURL
-   */
-  public async getPageRangesDiff(
-    aborter: Aborter,
-    offset: number,
-    count: number,
-    prevSnapshotURL: string,
-    options?: IPageBlobGetPageRangesDiffOptions
-  ): Promise<Models.PageBlobGetPageRangesDiffResponse>;
-
-  public async getPageRangesDiff(
-    aborter: Aborter,
-    offset: number,
-    count: number,
-    prevSnapshotOrURL: string,
     options: IPageBlobGetPageRangesDiffOptions = {}
   ): Promise<Models.PageBlobGetPageRangesDiffResponse> {
     options.accessConditions = options.accessConditions || {};
-
-    const lowerCaseSnapshot = prevSnapshotOrURL.toLowerCase();
-    const isSnapshotURL =
-      lowerCaseSnapshot.startsWith("http://") || lowerCaseSnapshot.startsWith("https://");
 
     return this.pageBlobContext.getPageRangesDiff({
       abortSignal: aborter,
       leaseAccessConditions: options.accessConditions.leaseAccessConditions,
       modifiedAccessConditions: options.accessConditions.modifiedAccessConditions,
-      prevSnapshot: isSnapshotURL ? undefined : prevSnapshotOrURL,
-      prevSnapshotUrl: isSnapshotURL ? prevSnapshotOrURL : undefined,
+      prevsnapshot: prevSnapshot,
+      range: rangeToString({ offset, count })
+    });
+  }
+
+  /**
+   * Managed Disk storage account only.
+   * Gets the collection of page ranges that differ between a specified snapshot and this page blob.
+   * @see https://docs.microsoft.com/rest/api/storageservices/get-page-ranges
+   *
+   * @param {Aborter} aborter
+   * @param {number} offset
+   * @param {number} count
+   * @param {string} prevSnapshotURL A previous snapshot page blob URL
+   * @param {IPageBlobGetPageRangesDiffOptions} [options={}]
+   * @returns {Promise<Models.PageBlobGetPageRangesDiffResponse>}
+   * @memberof PageBlobURL
+   */
+  public async getPageRangesDiffMD(
+    aborter: Aborter,
+    offset: number,
+    count: number,
+    prevSnapshotURL: string,
+    options: IPageBlobGetPageRangesDiffOptions = {}
+  ): Promise<Models.PageBlobGetPageRangesDiffResponse> {
+    options.accessConditions = options.accessConditions || {};
+    return this.pageBlobContext.getPageRangesDiff({
+      abortSignal: aborter,
+      leaseAccessConditions: options.accessConditions.leaseAccessConditions,
+      modifiedAccessConditions: options.accessConditions.modifiedAccessConditions,
+      prevSnapshotUrl: prevSnapshotURL,
       range: rangeToString({ offset, count })
     });
   }
