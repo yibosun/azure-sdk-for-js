@@ -4,7 +4,11 @@
 import { translate, MessagingError } from "./errors";
 import { delay, isNode } from "./util/utils";
 import * as log from "./log";
-import { defaultMaxRetries, defaultDelayBetweenRetriesInSeconds } from "./util/constants";
+import {
+  defaultMaxRetries,
+  defaultDelayBetweenRetriesInSeconds,
+  defaultOperationTimeoutInSeconds
+} from "./util/constants";
 import { resolve } from "dns";
 
 /**
@@ -60,6 +64,12 @@ export interface RetryConfig<T> {
    */
   operationType: RetryOperationType;
   /**
+   * @property {number} operationTimeoutInMs Maximum time allowed for within which an operation is
+   * expected to be completed. If operation takes longer, it will be cancelled, considered as failed
+   * with a retryable error and will be retried again on based on supplied `RetryConfig`
+   */
+  operationTimeoutInMs?: number;
+  /**
    * @property {number} [maxRetries] Number of times the operation needs to be retried in case
    * of retryable error. Default: 3.
    */
@@ -110,6 +120,29 @@ async function checkNetworkConnection(host: string): Promise<boolean> {
   }
 }
 
+async function executeOperation<T>(config: RetryConfig<T>) {
+  let result: any;
+  let isOperationDone = false;
+  let waitTimer;
+  try {
+    waitTimer = setTimeout(() => {
+      if (!isOperationDone) {
+        const operationTimeOutErr = new MessagingError("Operation timeout exceeded.");
+        operationTimeOutErr.name = "OperationTimeoutError";
+        operationTimeOutErr.retryable = true;
+        throw operationTimeOutErr;
+      }
+    }, config.operationTimeoutInMs);
+    result = await config.operation();
+  } catch (err) {
+    clearTimeout(waitTimer);
+    throw err;
+  } finally {
+    isOperationDone = true;
+  }
+  return result;
+}
+
 /**
  * Every operation is attempted at least once. Additional attempts are made if the previous attempt failed
  * with a retryable error. The number of additional attempts is governed by the `maxRetries` property provided
@@ -130,6 +163,9 @@ export async function retry<T>(config: RetryConfig<T>): Promise<T> {
   if (config.delayInSeconds == undefined || config.delayInSeconds < 0) {
     config.delayInSeconds = defaultDelayBetweenRetriesInSeconds;
   }
+  if (config.operationTimeoutInMs == undefined || config.operationTimeoutInMs <= 0) {
+    config.operationTimeoutInMs = defaultOperationTimeoutInSeconds * 1000;
+  }
   let lastError: MessagingError | undefined;
   let result: any;
   let success = false;
@@ -137,7 +173,7 @@ export async function retry<T>(config: RetryConfig<T>): Promise<T> {
   for (let i = 1; i <= totalNumberOfAttempts; i++) {
     log.retry("[%s] Attempt number: %d", config.connectionId, config.operationType, i);
     try {
-      result = await config.operation();
+      result = await executeOperation(config);
       success = true;
       log.retry(
         "[%s] Success for '%s', after attempt number: %d.",
