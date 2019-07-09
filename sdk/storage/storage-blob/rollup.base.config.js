@@ -1,13 +1,14 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-
-import nodeResolve from "rollup-plugin-node-resolve";
-import multiEntry from "rollup-plugin-multi-entry";
 import cjs from "rollup-plugin-commonjs";
+import multiEntry from "rollup-plugin-multi-entry";
+import nodeResolve from "rollup-plugin-node-resolve";
 import replace from "rollup-plugin-replace";
-import { uglify } from "rollup-plugin-uglify";
-import sourcemaps from "rollup-plugin-sourcemaps";
 import shim from "rollup-plugin-shim";
+import sourcemaps from "rollup-plugin-sourcemaps";
+import { uglify } from "rollup-plugin-uglify";
+
+
 // import visualizer from "rollup-plugin-visualizer";
 
 const version = require("./package.json").version;
@@ -70,7 +71,7 @@ export function nodeConfig(test = false) {
 export function browserConfig(test = false, production = false) {
   const baseConfig = {
     input: "dist-esm/src/index.browser.js",
-    external: ["ms-rest-js"],
+    external: ["ms-rest-js", "assert"],
     output: {
       file: "browser/azure-storage-blob.js",
       banner: banner,
@@ -100,14 +101,15 @@ export function browserConfig(test = false, production = false) {
       }),
       nodeResolve({
         mainFields: ["module", "browser"],
-        preferBuiltins: false
+        preferBuiltins: false,
+        dedupe: ['events']
       }),
       cjs({
         namedExports: {
           events: ["EventEmitter"],
           assert: ["ok", "deepEqual", "equal", "fail", "deepStrictEqual", "notDeepEqual"]
         }
-      })
+      }),
     ]
   };
 
